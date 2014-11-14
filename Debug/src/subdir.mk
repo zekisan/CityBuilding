@@ -9,6 +9,7 @@ CPP_SRCS += \
 ../src/game_state_editor.cpp \
 ../src/game_state_start.cpp \
 ../src/main.cpp \
+../src/map.cpp \
 ../src/texture_manager.cpp \
 ../src/tile.cpp 
 
@@ -18,6 +19,7 @@ OBJS += \
 ./src/game_state_editor.o \
 ./src/game_state_start.o \
 ./src/main.o \
+./src/map.o \
 ./src/texture_manager.o \
 ./src/tile.o 
 
@@ -27,6 +29,7 @@ CPP_DEPS += \
 ./src/game_state_editor.d \
 ./src/game_state_start.d \
 ./src/main.d \
+./src/map.d \
 ./src/texture_manager.d \
 ./src/tile.d 
 
