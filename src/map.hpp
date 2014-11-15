@@ -9,48 +9,59 @@
 
 #include "tile.hpp"
 
-class Map {
-private:
+class Map
+{
+    private:
 
-	void depthfirstsearch(std::vector<TileType>& whitelist, sf::Vector2i pos,
-			int label, int type);
+    void depthfirstsearch(std::vector<TileType>& whitelist,
+        sf::Vector2i pos, int label, int type);
 
-public:
+    public:
 
-	unsigned int width;
-	unsigned int height;
+    unsigned int width;
+    unsigned int height;
 
-	std::vector<Tile> tiles;
+    std::vector<Tile> tiles;
 
-	/* Resource map */
-	std::vector<int> resources;
+    /* Resource map */
+    std::vector<int> resources;
 
-	unsigned int tileSize;
+    unsigned int tileSize;
 
+    unsigned int numRegions[1];
+
+	/* 0 = Deselected, 1 = Selected, 2 = Invalid */
+	std::vector<char> selected;
 	unsigned int numSelected;
 
-	unsigned int numRegions[1];
+	/* Select the tiles within the bounds */
+	void select(sf::Vector2i start, sf::Vector2i end, std::vector<TileType> blacklist);
 
-	/* Load map from disk */
-	void load(const std::string& filename, unsigned int width,
-			unsigned int height, std::map<std::string, Tile>& tileAtlas);
+	/* Deselect all tiles */
+	void clearSelected();
 
-	/* Save map to disk */
-	void save(const std::string& filename);
+    /* Load map from disk */
+    void load(const std::string& filename, unsigned int width, unsigned int height,
+        std::map<std::string, Tile>& tileAtlas);
 
-	/* Draw the map */
-	void draw(sf::RenderWindow& window, float dt);
+    /* Save map to disk */
+    void save(const std::string& filename);
 
-	/* Checks if one position in the map is connected to another by
-	 * only traversing tiles in the whitelist */
-	void findConnectedRegions(std::vector<TileType> whitelist, int type);
+    /* Draw the map */    
+    void draw(sf::RenderWindow& window, float dt);
 
-	/* Update the direction of directional tiles so that they face the correct
-	 * way. Used to orient roads, pylons, rivers etc */
-	void updateDirection(TileType tileType);
+    /* Checks if one position in the map is connected to another by
+     * only traversing tiles in the whitelist */
+    void findConnectedRegions(std::vector<TileType> whitelist, int type);
 
+    /* Update the direction of directional tiles so that they face the correct
+     * way. Used to orient roads, pylons, rivers etc */
+    void updateDirection(TileType tileType);
+    
 	/* Blank map constructor */
-	Map() {
+	Map()
+	{
+		this->numSelected = 0;
 		this->tileSize = 8;
 		this->width = 0;
 		this->height = 0;
@@ -58,7 +69,9 @@ public:
 	}
 	/* Load map from file constructor */
 	Map(const std::string& filename, unsigned int width, unsigned int height,
-			std::map<std::string, Tile>& tileAtlas) {
+		std::map<std::string, Tile>& tileAtlas)
+	{
+		this->numSelected = 0;
 		this->tileSize = 8;
 		load(filename, width, height, tileAtlas);
 	}

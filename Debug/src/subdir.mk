@@ -5,9 +5,11 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../src/animation_handler.cpp \
+../src/city.cpp \
 ../src/game.cpp \
 ../src/game_state_editor.cpp \
 ../src/game_state_start.cpp \
+../src/gui.cpp \
 ../src/main.cpp \
 ../src/map.cpp \
 ../src/texture_manager.cpp \
@@ -15,9 +17,11 @@ CPP_SRCS += \
 
 OBJS += \
 ./src/animation_handler.o \
+./src/city.o \
 ./src/game.o \
 ./src/game_state_editor.o \
 ./src/game_state_start.o \
+./src/gui.o \
 ./src/main.o \
 ./src/map.o \
 ./src/texture_manager.o \
@@ -25,9 +29,11 @@ OBJS += \
 
 CPP_DEPS += \
 ./src/animation_handler.d \
+./src/city.d \
 ./src/game.d \
 ./src/game_state_editor.d \
 ./src/game_state_start.d \
+./src/gui.d \
 ./src/main.d \
 ./src/map.d \
 ./src/texture_manager.d \
